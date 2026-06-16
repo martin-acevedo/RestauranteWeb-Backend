@@ -67,7 +67,7 @@ public class AccountServiceImpl implements AccountService{
         Authentication authentication = authenticationManager.authenticate(login);
 
         String jwt = jwtUtil.create(usuario.getRut()+"#"+usuario.getName(),
-                authentication.getAuthorities().stream().toList().toString());
+                authentication.getAuthorities().stream().toList().get(0).getAuthority());
 
 
         return new LoginDtoOut(jwt);
