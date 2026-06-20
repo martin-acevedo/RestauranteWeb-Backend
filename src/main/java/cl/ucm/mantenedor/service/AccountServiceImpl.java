@@ -66,6 +66,10 @@ public class AccountServiceImpl implements AccountService{
 
         Authentication authentication = authenticationManager.authenticate(login);
 
+        if (authentication.getAuthorities().isEmpty()) {
+            throw new IllegalArgumentException("Usuario no tiene roles asignados");
+        }
+
         String jwt = jwtUtil.create(usuario.getRut()+"#"+usuario.getName(),
                 authentication.getAuthorities().stream().toList().get(0).getAuthority());
 
