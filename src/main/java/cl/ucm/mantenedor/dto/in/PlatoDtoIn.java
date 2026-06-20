@@ -9,6 +9,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDtoIn {
-    private String name;
+public class PlatoDtoIn {
+    private String nombre;
+    private String descripcion;
+    private int precio;
+    private boolean disponible;
+    private int idCategoria;
 }

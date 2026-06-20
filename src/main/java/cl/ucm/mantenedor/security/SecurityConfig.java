@@ -31,7 +31,12 @@ public class SecurityConfig {
                 .cors(config -> config.configurationSource(corsConfigurationSource))//.cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/category/**").hasAnyRole("Mesero", "Administrador")
+                        .requestMatchers(HttpMethod.GET, "/categoria/**").hasAnyRole("Mesero", "Administrador")
+                        .requestMatchers(HttpMethod.GET, "/plato/**").hasAnyRole("Mesero", "Administrador")
+                        .requestMatchers(HttpMethod.GET, "/mesa/**").hasAnyRole("Mesero", "Administrador")
+                        .requestMatchers("/categoria/**").hasRole("Administrador")
+                        .requestMatchers("/plato/**").hasRole("Administrador")
+                        .requestMatchers("/mesa/**").hasRole("Administrador")
                         .requestMatchers(HttpMethod.PUT,"/auth/update-pass/**").hasAnyRole("Administrador", "Mesero")
                         .requestMatchers("/dept/all").hasAnyRole("Mesero","Administrador")
                         .requestMatchers("/dept/save").hasAnyRole("Mesero","Administrador")

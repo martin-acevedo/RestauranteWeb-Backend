@@ -9,7 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDtoOut {
+public class MesaDtoOut {
     private int id;
-    private String name;
+    private int numero;
+    private int capacidad;
+    private String estado;
 }

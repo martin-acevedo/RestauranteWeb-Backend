@@ -11,18 +11,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Product {
+@Table(name = "mesas")
+public class Mesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_product")
-    private int idProduct;
-    @Column(length = 50)
-    private String name;
-    private int price;
-    private int stock;
+    private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "category_fk")
-    private Category category;
+    @Column(nullable = false, unique = true)
+    private int numero;
 
+    @Column(nullable = false)
+    private int capacidad;
+
+    @Column(length = 20, nullable = false)
+    private String estado; // "libre", "ocupada", "reservada"
 }
