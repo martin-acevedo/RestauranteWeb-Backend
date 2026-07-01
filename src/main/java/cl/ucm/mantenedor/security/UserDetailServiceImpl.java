@@ -37,10 +37,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private List<GrantedAuthority> grantedAuthorities(List<String> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>(roles.size());
         for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+            String authorityName = role.startsWith("ROLE_") ? role : "ROLE_" + role;
+            authorities.add(new SimpleGrantedAuthority(authorityName));
         }
-
         return authorities;
-
     }
 }

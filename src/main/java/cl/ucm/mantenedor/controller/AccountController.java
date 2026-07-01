@@ -16,7 +16,7 @@ public class AccountController {
     @Autowired
     private AccountService service;
 
-    @PostMapping(path = "create")
+    @PostMapping(path = {"create", "register"})
     public ResponseEntity<?> createAccount(@RequestBody AccountDtoIn in){
         try{
             return ResponseEntity.ok(service.createAccount(in));

@@ -18,6 +18,7 @@ public class JwtUtil {
     public String create(String username, String rol) {
         return JWT.create()
                 .withSubject(username + "#" + rol)
+                .withClaim("roles", java.util.List.of(rol))
                 .withIssuer("ucm-2025")
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(15)))

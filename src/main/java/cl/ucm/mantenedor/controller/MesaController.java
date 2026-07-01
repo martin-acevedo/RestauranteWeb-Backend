@@ -51,7 +51,9 @@ public class MesaController {
     public ResponseEntity<?> delete(@PathVariable int id) {
         try {
             service.delete(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorInfo(409, "No se puede eliminar la mesa porque tiene pedidos asociados."));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorInfo(404, e.getMessage()));
         }
